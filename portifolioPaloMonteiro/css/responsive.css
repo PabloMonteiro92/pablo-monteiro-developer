@@ -1,0 +1,115 @@
+/* Mobile-first approach */
+
+/* Breakpoint para telas pequenas (smartphones) */
+@media (max-width: 767px) {
+  h1 {
+    font-size: 2.5em;
+  }
+
+  h2 {
+    font-size: 2em;
+  }
+
+  section {
+    padding: 40px 15px;
+  }
+
+  #hero header {
+    flex-direction: column;
+    padding: 15px;
+  }
+
+  #hero header nav {
+    margin-top: 10px;
+  }
+
+  #hero header nav a {
+    margin: 0 10px;
+  }
+
+  #hero header .social-links {
+    margin-top: 10px;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .hero-buttons .btn {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .about-highlights > div {
+    max-width: 100%;
+  }
+
+  .contact-info {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .contact-info > div {
+    min-width: unset;
+    width: 100%;
+  }
+
+  .social-links-contact a {
+    margin: 0 8px;
+    font-size: 1em;
+  }
+}
+
+/* Breakpoint para tablets (768px a 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  h1 {
+    font-size: 3em;
+  }
+
+  h2 {
+    font-size: 2.2em;
+  }
+
+  section {
+    padding: 50px 20px;
+  }
+
+  .about-highlights > div {
+    max-width: 48%;
+  }
+
+  .contact-info > div {
+    min-width: 45%;
+  }
+}
+
+/* Breakpoint para desktops pequenos (1024px a 1439px) */
+@media (min-width: 1024px) and (max-width: 1439px) {
+  h1 {
+    font-size: 3.2em;
+  }
+
+  h2 {
+    font-size: 2.3em;
+  }
+
+  section {
+    padding: 60px 30px;
+  }
+}
+
+/* Breakpoint para desktops grandes (1440px e acima) */
+@media (min-width: 1440px) {
+  h1 {
+    font-size: 3.5em;
+  }
+
+  h2 {
+    font-size: 2.5em;
+  }
+
+  section {
+    padding: 80px 40px;
+  }
+}
