@@ -5,7 +5,7 @@
 [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 [![EmailJS](https://img.shields.io/badge/EmailJS-FF6B6B?style=flat&logo=email&logoColor=white)](https://www.emailjs.com/)
 
-> Portfólio profissional desenvolvido para demonstrar competências em desenvolvimento front-end, automação e soluções tecnológicas.
+> Portfólio com algumas competências em desenvolvimento front-end, automação e soluções tecnológicas.
 
 ## 🎯 Sobre o Projeto
 
