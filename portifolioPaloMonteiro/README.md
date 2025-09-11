@@ -9,9 +9,9 @@ portfolio-pablo-monteiro/
 ├── js/
 │   └── main.js           # JavaScript funcional
 ├── assets/
-│   ├── images/          # Imagens do projeto
-│   └── documents/       # Documentos (PDF currículo)
-└── README.md           # Este arquivo
+│   └── images/          # Imagens do projeto
+├── artifacts/              # Documentos (PDF currículo)
+└── README.md               # Este arquivo
 ```
 
 ## ✨ Funcionalidades
