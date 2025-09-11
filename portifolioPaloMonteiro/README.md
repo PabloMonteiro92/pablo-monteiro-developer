@@ -1,23 +1,3 @@
-# Portfólio Pablo Monteiro - Refatorado
-
-## 🚀 Instalação
-
-1. Faça o download do arquivo ZIP
-2. Extraia os arquivos
-3. Abra o arquivo `index.html` em um navegador moderno
-
-## 📧 Configuração EmailJS
-
-Para ativar o envio de emails do formulário de contato:
-
-1. Crie uma conta em [EmailJS.com](https://www.emailjs.com/)
-2. Configure um serviço de email
-3. Crie um template de email
-4. Edite o arquivo `js/main.js` e substitua:
-   - `YOUR_SERVICE_ID` pelo seu Service ID
-   - `YOUR_TEMPLATE_ID` pelo seu Template ID
-   - `YOUR_PUBLIC_KEY` pela sua Public Key
-     //service_ipc8l1e
 
 ## 📁 Estrutura do Projeto
 
