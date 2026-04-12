@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pablo Monteiro — Cybersecurity</title>
+<meta name="description" content="Pablo Monteiro — Cybersecurity Analyst, SOC, AppSec, Networking. Portfólio de cibersegurança.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080c10;
+    --bg2: #0d1117;
+    --bg3: #111820;
+    --surface: #141c25;
+    --surface2: #1a2332;
+    --border: rgba(139,92,246,0.12);
+    --border2: rgba(139,92,246,0.28);
+    --green: #a78bfa;
+    --green-dim: rgba(139,92,246,0.12);
+    --green-glow: rgba(139,92,246,0.06);
+    --amber: #f5a623;
+    --red: #e05454;
+    --text: #e2e8f0;
+    --text2: #8899aa;
+    --text3: #4a5a6a;
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'Syne', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* scanline overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.04) 2px,
+      rgba(0,0,0,0.04) 4px
+    );
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2.5rem;
+    height: 56px;
+    background: rgba(8,12,16,0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--green);
+    letter-spacing: 0.05em;
+  }
+
+  .nav-logo span { color: var(--text3); }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text2);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--green); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 100px 2.5rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(139,92,246,0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(139,92,246,0.08) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+    opacity: 0.4;
+  }
+
+  .hero-content {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .hero-tag {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--green);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .hero-tag::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--green);
+  }
+
+  h1 {
+    font-family: var(--sans);
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    font-weight: 800;
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+  }
+
+  h1 .name-first { color: var(--text); }
+  h1 .name-last { color: var(--green); }
+
+  .hero-subtitle {
+    font-family: var(--mono);
+    font-size: clamp(0.85rem, 1.5vw, 1rem);
+    color: var(--text2);
+    max-width: 560px;
+    line-height: 1.7;
+    margin-bottom: 3rem;
+  }
+
+  .hero-roles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 3rem;
+  }
+
+  .role-tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 5px 14px;
+    border: 1px solid var(--border2);
+    color: var(--green);
+    background: var(--green-dim);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 12px 28px;
+    background: #7c3aed;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    transition: all 0.2s;
+    border: 1px solid #7c3aed;
+  }
+
+  .btn-primary:hover {
+    background: transparent;
+    color: var(--green);
+  }
+
+  .btn-secondary {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 12px 28px;
+    background: transparent;
+    color: var(--text2);
+    text-decoration: none;
+    border: 1px solid var(--border2);
+    transition: all 0.2s;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--green);
+    color: var(--green);
+  }
+
+  .hero-status {
+    position: absolute;
+    bottom: 2rem;
+    right: 0;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text3);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .status-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--green);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    padding: 100px 2.5rem;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--green);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .section-label::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--green);
+  }
+
+  .section-title {
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 3.5rem;
+    color: var(--text);
+  }
+
+  /* ── ABOUT ── */
+  #about {
+    border-top: 1px solid var(--border);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .about-text p {
+    font-family: var(--mono);
+    font-size: 14px;
+    color: var(--text2);
+    line-height: 1.85;
+    margin-bottom: 1.5rem;
+  }
+
+  .about-text p strong {
+    color: var(--green);
+    font-weight: 500;
+  }
+
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+  }
+
+  .stat-cell {
+    background: var(--bg2);
+    padding: 2rem 1.5rem;
+  }
+
+  .stat-number {
+    font-family: var(--sans);
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--green);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+
+  .stat-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text3);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* ── PROJECTS ── */
+  #projects {
+    border-top: 1px solid var(--border);
+    max-width: 960px;
+  }
+
+  .project-featured {
+    border: 1px solid var(--border2);
+    background: var(--bg2);
+    margin-bottom: 2px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s;
+  }
+
+  .project-featured:hover {
+    border-color: var(--green);
+  }
+
+  .project-featured::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--green);
+  }
+
+  .project-inner {
+    padding: 2.5rem;
+  }
+
+  .project-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+  }
+
+  .project-badge {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    background: var(--green-dim);
+    color: var(--green);
+    border: 1px solid var(--border2);
+  }
+
+  .project-link {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text3);
+    text-decoration: none;
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .project-link:hover { color: var(--green); }
+
+  .project-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: var(--text);
+  }
+
+  .project-desc {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    max-width: 600px;
+  }
+
+  .project-features {
+    list-style: none;
+    margin-bottom: 1.75rem;
+  }
+
+  .project-features li {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text2);
+    padding: 0.35rem 0;
+    display: flex;
+    gap: 0.75rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .project-features li:last-child { border-bottom: none; }
+
+  .project-features li::before {
+    content: '>';
+    color: var(--green);
+    flex-shrink: 0;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    padding: 3px 10px;
+    background: var(--surface);
+    color: var(--text3);
+    border: 1px solid var(--border);
+    letter-spacing: 0.06em;
+    transition: all 0.2s;
+  }
+
+  .tag:hover {
+    color: var(--green);
+    border-color: var(--border2);
+  }
+
+  .projects-secondary {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-top: 2px;
+  }
+
+  .project-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    padding: 1.75rem;
+    transition: border-color 0.3s;
+  }
+
+  .project-card:hover { border-color: var(--border2); }
+
+  .project-card-name {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+    color: var(--text);
+  }
+
+  .project-card-desc {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text2);
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+  }
+
+  /* ── SKILLS ── */
+  #skills {
+    border-top: 1px solid var(--border);
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--border);
+  }
+
+  .skill-group {
+    background: var(--bg2);
+    padding: 2rem;
+  }
+
+  .skill-group-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--green);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .skill-item {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text2);
+    padding: 0.3rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .skill-item::before {
+    content: '';
+    display: block;
+    width: 4px;
+    height: 4px;
+    background: var(--text3);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ── EXPERIENCE / TIMELINE ── */
+  #experience {
+    border-top: 1px solid var(--border);
+  }
+
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: var(--border2);
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .timeline-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+
+  .timeline-dot {
+    position: absolute;
+    left: -2.45rem;
+    top: 4px;
+    width: 10px;
+    height: 10px;
+    border: 1px solid var(--green);
+    background: var(--bg);
+    transform: rotate(45deg);
+  }
+
+  .timeline-dot.active {
+    background: var(--green);
+  }
+
+  .timeline-period {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text3);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.4rem;
+  }
+
+  .timeline-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.2rem;
+  }
+
+  .timeline-org {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--green);
+    margin-bottom: 0.85rem;
+  }
+
+  .timeline-desc {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text2);
+    line-height: 1.75;
+  }
+
+  /* ── CERTS ── */
+  #certs {
+    border-top: 1px solid var(--border);
+  }
+
+  .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    background: var(--border);
+  }
+
+  .cert-item {
+    background: var(--bg2);
+    padding: 1.5rem;
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+  }
+
+  .cert-icon {
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--border2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--green);
+    font-family: var(--mono);
+    font-size: 14px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .cert-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.2rem;
+  }
+
+  .cert-org {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text3);
+  }
+
+  /* ── CONTACT ── */
+  #contact {
+    border-top: 1px solid var(--border);
+    text-align: center;
+    padding: 100px 2.5rem;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .contact-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+    color: var(--text);
+  }
+
+  .contact-sub {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--text2);
+    margin-bottom: 3rem;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .contact-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .contact-link {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text2);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 10px 20px;
+    border: 1px solid var(--border);
+    transition: all 0.2s;
+    letter-spacing: 0.06em;
+  }
+
+  .contact-link:hover {
+    border-color: var(--green);
+    color: var(--green);
+  }
+
+  .contact-location {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text3);
+    letter-spacing: 0.08em;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  footer p {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text3);
+    letter-spacing: 0.06em;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-content > * {
+    animation: fadeUp 0.7s ease both;
+  }
+
+  .hero-tag        { animation-delay: 0.05s; }
+  h1               { animation-delay: 0.15s; }
+  .hero-subtitle   { animation-delay: 0.25s; }
+  .hero-roles      { animation-delay: 0.35s; }
+  .hero-cta        { animation-delay: 0.45s; }
+
+  /* ── TERMINAL CURSOR ── */
+  .cursor {
+    display: inline-block;
+    width: 10px;
+    height: 1.1em;
+    background: var(--green);
+    vertical-align: text-bottom;
+    animation: blink 1s step-end infinite;
+    margin-left: 2px;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 700px) {
+    nav { padding: 0 1.25rem; }
+    .nav-links { display: none; }
+    section { padding: 60px 1.25rem; }
+    #hero { padding: 90px 1.25rem 3rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .about-stats { grid-template-columns: 1fr 1fr; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .projects-secondary { grid-template-columns: 1fr; }
+    .certs-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo"><span>~/</span>pablo-monteiro</div>
+  <ul class="nav-links">
+    <li><a href="#about">about</a></li>
+    <li><a href="#projects">projects</a></li>
+    <li><a href="#skills">skills</a></li>
+    <li><a href="#experience">experience</a></li>
+    <li><a href="#contact">contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Cybersecurity Analyst</div>
+    <h1>
+      <span class="name-first">Pablo</span><br>
+      <span class="name-last">Monteiro</span><span class="cursor"></span>
+    </h1>
+    <p class="hero-subtitle">
+      SOC · AppSec · Networking · Python<br>
+      Viseu, Portugal — disponível Porto/Lisboa, remoto e híbrido.
+    </p>
+    <div class="hero-roles">
+      <span class="role-tag">SOC Analyst</span>
+      <span class="role-tag">AppSec</span>
+      <span class="role-tag">Networking</span>
+      <span class="role-tag">Python</span>
+      <span class="role-tag">Linux</span>
+      <span class="role-tag">Bug Bounty</span>
+    </div>
+    <div class="hero-cta">
+      <a href="#projects" class="btn-primary">Ver projectos</a>
+      <a href="#contact" class="btn-secondary">Contacto</a>
+    </div>
+    <div class="hero-status">
+      <span class="status-dot"></span>
+      disponível para oportunidades
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">sobre</div>
+  <div class="section-title">Quem sou</div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>
+        Profissional em transição para cibersegurança com experiência real em
+        <strong>controlo de acessos</strong>, <strong>monitorização operacional</strong>
+        e automação de processos — construída dentro de um ambiente corporativo real (Praxi–Ferrovial).
+      </p>
+      <p>
+        A consolidar a base académica em <strong>Licenciatura em Análise e Desenvolvimento de Sistemas</strong>
+        (Faculdade Descomplica, 2025–2027), com foco em cibersegurança aplicada. Tenho complementado
+        a graduação com formações extra, como o Bootcamp Riachuelo – Cibersegurança (DIO, Abril 2026),
+        e desenvolvi o <strong>Project Poneglyph</strong>, laboratório educacional em Python com
+        simulações de ransomware, keylogging e resposta a incidentes.
+      </p>
+      <p>
+        Formação complementar em <strong>Bug Bounty</strong> (Pato Academy),
+        operações defensivas <strong>SOC</strong> (Hacker do Bem) e
+        <strong>Networking</strong> (Cisco Networking Academy).
+        Disponível para oportunidades em cibersegurança — presencial, híbrido ou remoto.
+      </p>
+    </div>
+    <div class="about-stats">
+      <div class="stat-cell">
+        <div class="stat-number">4+</div>
+        <div class="stat-label">anos em ambiente corporativo</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-number">100%</div>
+        <div class="stat-label">processos digitalizados</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-number">40h</div>
+        <div class="stat-label">Bootcamp Cibersegurança DIO</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-number">7+</div>
+        <div class="stat-label">certificações técnicas</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" style="max-width:960px; padding-left:2.5rem; padding-right:2.5rem; margin:0 auto; padding-top:100px; padding-bottom:100px; border-top:1px solid var(--border);">
+  <div class="section-label">projectos</div>
+  <div class="section-title">Trabalho em destaque</div>
+
+  <!-- Featured: Poneglyph -->
+  <div class="project-featured">
+    <div class="project-inner">
+      <div class="project-top">
+        <span class="project-badge">★ Destaque — Cibersegurança</span>
+        <a href="https://github.com/PabloMonteiro92/poneglyph-lab" target="_blank" class="project-link">
+          github ↗
+        </a>
+      </div>
+      <div class="project-name">Project Poneglyph</div>
+      <p class="project-desc">
+        Laboratório educacional em Python que simula técnicas de ataque e defesa
+        através da temática de One Piece. Cada módulo mapeia um conceito de cibersegurança
+        real — do ransomware ao keylogger — com foco em compreensão profunda, não execução maliciosa.
+      </p>
+      <ul class="project-features">
+        <li>Simulação educacional de ransomware com lógica de cifra e resgate de ficheiros</li>
+        <li>Keylogger em Python com captura e registo de eventos de teclado</li>
+        <li>Script de recuperação pós-incidente e restauro de ambiente</li>
+        <li>Gestão segura de credenciais via variáveis de ambiente (.env)</li>
+        <li>Glossário temático: terminologia de One Piece → conceitos de segurança</li>
+      </ul>
+      <div class="tags">
+        <span class="tag">Python</span>
+        <span class="tag">Malware Simulation</span>
+        <span class="tag">Incident Response</span>
+        <span class="tag">Credential Security</span>
+        <span class="tag">Threat Modelling</span>
+        <span class="tag">GitHub</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Secondary projects -->
+  <div class="projects-secondary">
+    <div class="project-card">
+      <div class="project-top" style="margin-bottom:0.75rem;">
+        <span class="project-badge" style="font-size:9px;">Corporativo</span>
+        <a href="https://app-controle-acesso.netlify.app" target="_blank" class="project-link">demo ↗</a>
+      </div>
+      <div class="project-card-name">App Controle de Acesso</div>
+      <p class="project-card-desc">
+        Sistema corporativo de controlo de acessos com dashboard de monitorização em tempo real.
+        Digitalizou a 100% os processos manuais de entrada/saída na Praxi–Ferrovial.
+        Base de dados NoSQL (Firestore) com foco em integridade e rastreabilidade.
+      </p>
+      <div class="tags">
+        <span class="tag">JavaScript</span>
+        <span class="tag">Firebase</span>
+        <span class="tag">Access Control</span>
+        <span class="tag">Monitoring</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-top" style="margin-bottom:0.75rem;">
+        <span class="project-badge" style="font-size:9px;">Auditoria</span>
+        <a href="https://github.com/PabloMonteiro92/network-auth-auditory-lab" target="_blank" class="project-link">github ↗</a>
+      </div>
+      <div class="project-card-name">Network Auth Auditory Lab</div>
+      <p class="project-card-desc">
+        Relatório técnico de auditoria de autenticação em ambiente de rede.
+        Análise de vectores de ataque, configurações inseguras e recomendações de hardening.
+      </p>
+      <div class="tags">
+        <span class="tag">Networking</span>
+        <span class="tag">Auth Audit</span>
+        <span class="tag">Hardening</span>
+        <span class="tag">Report</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">competências</div>
+  <div class="section-title">Stack técnico</div>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <div class="skill-group-label">SOC &amp; Defesa</div>
+      <div class="skill-item">Análise de logs</div>
+      <div class="skill-item">Resposta a incidentes</div>
+      <div class="skill-item">Monitorização em tempo real</div>
+      <div class="skill-item">Triagem de alertas</div>
+      <div class="skill-item">Threat modelling</div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-label">AppSec &amp; Ofensiva</div>
+      <div class="skill-item">Bug Bounty (Pato Academy)</div>
+      <div class="skill-item">OWASP Top 10</div>
+      <div class="skill-item">Reconhecimento / OSINT</div>
+      <div class="skill-item">Enumeração web</div>
+      <div class="skill-item">Análise de vulnerabilidades</div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-label">Redes</div>
+      <div class="skill-item">TCP/IP · OSI model</div>
+      <div class="skill-item">Cisco Networking Basics</div>
+      <div class="skill-item">Cisco Networking Essentials</div>
+      <div class="skill-item">Segurança de redes</div>
+      <div class="skill-item">Protocolos e firewall</div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-label">Linguagens &amp; Tools</div>
+      <div class="skill-item">Python (automação, scripts)</div>
+      <div class="skill-item">Bash · Linux CLI</div>
+      <div class="skill-item">JavaScript</div>
+      <div class="skill-item">Git · GitHub</div>
+      <div class="skill-item">Firebase / Firestore</div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-label">Cloud &amp; IA</div>
+      <div class="skill-item">Azure AI (Microsoft)</div>
+      <div class="skill-item">GitHub Copilot</div>
+      <div class="skill-item">Automação de fluxos</div>
+      <div class="skill-item">Scripts de automação</div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-label">Soft Skills</div>
+      <div class="skill-item">Resolução de problemas</div>
+      <div class="skill-item">Documentação técnica</div>
+      <div class="skill-item">Comunicação clara</div>
+      <div class="skill-item">Aprendizagem autónoma</div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">experiência &amp; formação</div>
+  <div class="section-title">Trajecto</div>
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-dot active"></div>
+      <div class="timeline-period">2025 – 2027 (em curso)</div>
+      <div class="timeline-title">Licenciatura em Análise e Desenvolvimento de Sistemas</div>
+      <div class="timeline-org">Faculdade Descomplica</div>
+      <div class="timeline-desc">Formação académica formal com foco em desenvolvimento de software e cibersegurança aplicada.</div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot active"></div>
+      <div class="timeline-period">2021 – Presente</div>
+      <div class="timeline-title">Desenvolvedor &amp; Técnico Administrativo</div>
+      <div class="timeline-org">Praxi – Ferrovial · Viseu, Portugal</div>
+      <div class="timeline-desc">Desenvolvimento de sistema de controlo de acessos (digitalização 100% dos processos manuais). Dashboard de monitorização em tempo real. Gestão e protecção de base de dados NoSQL crítica. Automação de fluxos administrativos com scripts.</div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-period">Abril 2026</div>
+      <div class="timeline-title">Bootcamp Riachuelo – Cibersegurança</div>
+      <div class="timeline-org">Digital Innovation One (DIO) · 40 horas</div>
+      <div class="timeline-desc">Fundamentos de segurança ofensiva e defensiva, análise de vulnerabilidades, boas práticas SOC. Concluído com projecto capstone (Poneglyph).</div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-period">2024 – 2025</div>
+      <div class="timeline-title">Hacker do Bem</div>
+      <div class="timeline-org">Programa Nacional — Redes, Segurança da Informação &amp; SOC</div>
+      <div class="timeline-desc">Operações defensivas, análise de logs, resposta a incidentes e fundamentos de segurança da informação.</div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-period">2024 – 2025</div>
+      <div class="timeline-title">Bug Bounty</div>
+      <div class="timeline-org">Pato Academy — Análise Ofensiva &amp; Vulnerabilidades Web</div>
+      <div class="timeline-desc">Reconhecimento, enumeração, exploração de vulnerabilidades em aplicações web. Foco em OWASP Top 10 e metodologia de bug bounty.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CERTS -->
+<section id="certs" style="border-top:1px solid var(--border); padding-top:100px; padding-bottom:100px;">
+  <div class="section-label">certificações</div>
+  <div class="section-title">Credenciais</div>
+  <div class="certs-grid">
+    <div class="cert-item">
+      <div class="cert-icon">CS</div>
+      <div>
+        <div class="cert-name">Introduction to Cybersecurity</div>
+        <div class="cert-org">Cisco Networking Academy</div>
+      </div>
+    </div>
+    <div class="cert-item">
+      <div class="cert-icon">NE</div>
+      <div>
+        <div class="cert-name">Networking Basics / Essentials</div>
+        <div class="cert-org">Cisco Networking Academy</div>
+      </div>
+    </div>
+    <div class="cert-item">
+      <div class="cert-icon">AZ</div>
+      <div>
+        <div class="cert-name">Introdução à IA do Azure</div>
+        <div class="cert-org">Microsoft</div>
+      </div>
+    </div>
+    <div class="cert-item">
+      <div class="cert-icon">GH</div>
+      <div>
+        <div class="cert-name">GitHub Copilot</div>
+        <div class="cert-org">Escola do Trabalhador 4.0</div>
+      </div>
+    </div>
+    <div class="cert-item">
+      <div class="cert-icon">FE</div>
+      <div>
+        <div class="cert-name">Basic Frontend Specialist</div>
+        <div class="cert-org">Faculdade Descomplica</div>
+      </div>
+    </div>
+    <div class="cert-item">
+      <div class="cert-icon">GD</div>
+      <div>
+        <div class="cert-name">Green Digital Certificate Program</div>
+        <div class="cert-org">INCO Academy</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="border-top:1px solid var(--border); padding-top:100px; padding-bottom:100px; text-align:center; max-width:960px; margin:0 auto;">
+  <div class="section-label" style="justify-content:center;">contacto</div>
+  <div class="contact-title">Vamos trabalhar juntos?</div>
+  <p class="contact-sub">
+    Disponível para posições SOC, AppSec e Networking —
+    presencial em Lisboa, híbrido ou remoto.
+  </p>
+  <div class="contact-links">
+    <a href="mailto:pablomonteiro1992@gmail.com" class="contact-link">
+      ✉ pablomonteiro1992@gmail.com
+    </a>
+    <a href="https://linkedin.com/in/pablo-monteiro-86a45b235" target="_blank" class="contact-link">
+      ↗ LinkedIn
+    </a>
+    <a href="https://github.com/PabloMonteiro92" target="_blank" class="contact-link">
+      ↗ GitHub
+    </a>
+    <a href="tel:+351911545360" class="contact-link">
+      ✆ +351 911 545 360
+    </a>
+  </div>
+  <div class="contact-location">Viseu, Portugal · Disponível Porto/Lisboa / Remoto / Híbrido</div>
+</section>
+
+<footer>
+  <p>© 2026 Pablo Monteiro</p>
+  <p>pablo-monteiro-security-portfolio</p>
+</footer>
+
+</body>
+</html>
