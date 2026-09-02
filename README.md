@@ -7,7 +7,7 @@
   </p>
 
   <p align="center">
-    <a href="[https://portifoliopablomonteiro.netlify.app" target="_blank">
+    <a href="https://portifoliopablomonteiro.netlify.app" target="_blank">
       <img src="https://img.shields.io/badge/Live_Portfolio-00C7B7?style=for-the-badge&logo=netlify&logoColor=white" alt="Portfolio Netlify" />
     </a>
     <a href="https://www.linkedin.com/in/pablomonteiroo" target="_blank">
