@@ -33,13 +33,13 @@ Em reta final da **Licenciatura em Análise e Desenvolvimento de Sistemas** (Fac
 <table>
   <tr>
     <td width="50%" valign="top">
-      <h4>★ <a href="https://app-controle-acesso.netlify.app">Sistema de Controle de Acesso</a></h4>
+      <h4>★ <a href="https://github.com/PabloMonteiro92/controle-acesso-digital/tree/main">Sistema de Controle de Acesso</a></h4>
       <p><code>[PRODUÇÃO EM CAMPO]</code></p>
       <p>Aplicação corporativa real que digitalizou a 100% os processos manuais de entrada/saída em infraestrutura crítica (projeto IP3 — Ferrovial), com dashboard de monitorização em tempo real e auditoria.</p>
       <p><code>JavaScript</code> · <code>NoSQL Firestore</code> · <code>Firebase</code> · <code>Access Control</code></p>
     </td>
     <td width="50%" valign="top">
-      <h4>★ <a href="https://github.com/PabloMonteiro92">CozyBreak (v1.0.0)</a></h4>
+      <h4>★ <a href="https://github.com/PabloMonteiro92/CozyBreakMVP">CozyBreak (v1.0.0)</a></h4>
       <p><code>[OPEN SOURCE · DESKTOP & APPSEC]</code></p>
       <p>Aplicação desktop nativa para Windows construída com foco em privacidade, encriptação local de dados sensíveis via Windows DPAPI e pipeline de CI/CD automatizado.</p>
       <p><code>C#</code> · <code>.NET 8 WPF</code> · <code>Windows DPAPI</code> · <code>GitHub Actions</code></p>
